@@ -1,12 +1,19 @@
 extern crate image;
 use image::{DynamicImage, ImageBuffer, Rgba};
 use std::fs;
-use std::path::Path;
+// use std::path::Path;
+use std::io;
 
 
 fn main() {
-    // Set the path to the folder containing the images
-    let path = Path::new(r"C:\Users\JM\Pictures\Test Images");
+    // ask the user for the path to the folder containing the images
+    println!("Enter the path to the folder containing the images:");
+    
+    let mut path = String::new();
+    io::stdin().read_line(&mut path).unwrap();
+
+    // remove the newline character from the path
+    path = path.trim().to_string();
 
     // Read all files in the folder
     let files = fs::read_dir(path).unwrap();
@@ -31,6 +38,13 @@ fn main() {
 
 
     }
+
+    println!("Done!");
+
+    //wait for user input before closing
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+
 }
 
 // Invert the colors of an image
